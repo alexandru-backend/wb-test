@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: wb-app
+    volumes:
+      - .:/var/www
+    networks:
+      - wb-network
+
+  db:
+    image: mysql:8.0
+    container_name: wb-db
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - wb-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: wb-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - wb-network
+
+networks:
+  wb-network:
+    driver: bridge
