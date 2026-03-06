@@ -26,6 +26,7 @@ docker-compose exec app php artisan fetch:sales
 docker-compose exec app php artisan fetch:orders
 docker-compose exec app php artisan fetch:stocks
 docker-compose exec app php artisan fetch:incomes
+```
 Note: By default, commands are configured to fetch the first page of results for a quick evaluation.
 
 📡 API Endpoints (Local)
